@@ -1,7 +1,7 @@
 import axios from "axios";
 import type { EmailRequest, EmailResponse } from "../../common/dataStructures/email";
 
-const baseUrl = 'http://localhost:5000';
+const baseUrl = 'https://www.pierceclinger.com';
 
 export class ApiService {
     static async sendEmail(data: EmailRequest): Promise<EmailResponse> {
