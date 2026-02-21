@@ -9,7 +9,7 @@ import {
 } from "./ui/item"
 import { Badge } from './ui/badge'
 import './Projects.css'
-import { PiggyBankIcon, CircleDollarSignIcon, MessageSquare, ChevronsUpDown } from 'lucide-react'
+import { PiggyBankIcon, CircleDollarSignIcon, MessageSquare, ChevronsUpDown, EarthIcon, NewspaperIcon } from 'lucide-react'
 import { Collapsible } from '@radix-ui/react-collapsible'
 import { Button } from './ui/button'
 import { CollapsibleContent, CollapsibleTrigger } from './ui/collapsible'
@@ -40,19 +40,32 @@ function Projects() {
 
     const projectsCollapsed = [
         {
-            icon: <PiggyBankIcon />,
-            name: "Budget App",
-            description: "Finacial tracking application with in-depth reporting and data visualization.",
-            skills: ["Vue", "Vuetify", "Node.js", "TypeScript", "MongoDB"]
+            icon: <EarthIcon />,
+            name: "Evolution Simulator",
+            description: "A simulation of evolutionary processes with genetic algorithms and environmental factors.",
+            skills: ["Node.js", "JavaScript", "Canvas API", "HTML/CSS", "Chart.js"]
+        },
+        {
+            icon: <NewspaperIcon />,
+            name: "News Article Classifier",
+            description: "Trained Lora adapter for classifying news articles into categories using a AGNews dataset.",
+            skills: ["Python", "Transformers", "PyTorch", "Hugging Face"]
         },
     ]
+
+    function scrollToContent() {
+        const content = document.getElementById('collapsible-content');
+        if (content && !isOpen) {
+            content.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
 
     return (
         <>
             <div className="projects-wrapper">
                 <Collapsible open={isOpen} onOpenChange={setIsOpen}>
                     <CollapsibleTrigger className="float-right" asChild>
-                        <Button variant="ghost" size="icon" className="size-8">
+                        <Button variant="ghost" size="icon" className="size-8" onClick={scrollToContent}>
                             <ChevronsUpDown />
                             <span className="sr-only">Toggle details</span>
                         </Button>
@@ -82,30 +95,32 @@ function Projects() {
                             </ItemActions>
                         </Item>
                     ))}
-                    <CollapsibleContent>
-                        {projectsCollapsed.map((project, index) => (
-                            <Item className='mb-2' key={index} variant={'outline'}>
-                                <ItemMedia variant="icon">
-                                    {project.icon}
-                                </ItemMedia>
-                                <ItemContent>
-                                    <ItemTitle>{project.name}</ItemTitle>
-                                    <ItemDescription>
-                                        {project.description}
-                                    </ItemDescription>
-                                </ItemContent>
-                                <ItemActions>
-                                    <div className='flex flex-wrap'>
-                                    {project.skills.map((skill, skillIndex) => (
-                                        <Badge key={skillIndex} className="mr-1 mb-1 sm:mb-0 bg-muted text-muted-foreground">
-                                            {skill}
-                                        </Badge>
-                                    ))}
-                                    </div>
-                                </ItemActions>
-                            </Item>
-                        ))}
-                    </CollapsibleContent>
+                    <div id='collapsible-content'>
+                        <CollapsibleContent>
+                            {projectsCollapsed.map((project, index) => (
+                                <Item className='mb-2' key={index} variant={'outline'}>
+                                    <ItemMedia variant="icon">
+                                        {project.icon}
+                                    </ItemMedia>
+                                    <ItemContent>
+                                        <ItemTitle>{project.name}</ItemTitle>
+                                        <ItemDescription>
+                                            {project.description}
+                                        </ItemDescription>
+                                    </ItemContent>
+                                    <ItemActions>
+                                        <div className='flex flex-wrap'>
+                                        {project.skills.map((skill, skillIndex) => (
+                                            <Badge key={skillIndex} className="mr-1 mb-1 sm:mb-0 bg-muted text-muted-foreground">
+                                                {skill}
+                                            </Badge>
+                                        ))}
+                                        </div>
+                                    </ItemActions>
+                                </Item>
+                            ))}
+                        </CollapsibleContent>
+                    </div>
                 </Collapsible>
             </div>
         </>
