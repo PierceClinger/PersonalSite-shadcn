@@ -11,9 +11,9 @@ function Quote() {
             viewport={{ once: false, amount: 1 }}
             transition={{ duration: 1, ease: "easeOut" }}
             >
-                <i className="quote-text">"There is only one good, knowledge, and one evil, ignorance."</i>
+                <i className="quote-text">"Computer science is no more about computers than astronomy is about telescopes."</i>
                 <p className="text-muted-foreground mt-2">
-                    — Socrates
+                    — Edsger W. Dijkstra
                 </p>
             </motion.div>
         </div>
